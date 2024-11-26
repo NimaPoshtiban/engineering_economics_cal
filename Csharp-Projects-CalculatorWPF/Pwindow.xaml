@@ -1,0 +1,247 @@
+﻿<Window x:Class="Calculator.Pwindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:controls="clr-namespace:WpfMath.Controls;assembly=WpfMath"
+        xmlns:local="clr-namespace:Calculator"
+        SizeToContent="WidthAndHeight"
+        mc:Ignorable="d"
+        KeyDown="Window_KeyDown"
+        Title="Future Worth Calculator" Height="300" MinWidth="650" VerticalAlignment="Center" WindowStyle="ThreeDBorderWindow" >
+    <Grid>
+        <TabControl >
+            <TabItem x:Name="p" Header="Present Worth">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="183*"/>
+                        <ColumnDefinition Width="461*"/>
+
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="2*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+
+                        <RowDefinition Height="*"/>
+
+
+                    </Grid.RowDefinitions>
+                    <DockPanel Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2">
+                        <controls:FormulaControl x:Name="sump" HorizontalAlignment="Center"  Formula="\sum_{n=start}^{end}{A\cdot\left[\frac{1}{\left(1+i\right)^{n}}\right]} = P" Margin="0,0,0,0" VerticalAlignment="Stretch"/>
+                    </DockPanel>
+                    <DockPanel  Grid.Row="1" Margin="0,5,0,36" Grid.ColumnSpan="2" Grid.RowSpan="2">
+                        <Label Content="Interest Rate%" VerticalContentAlignment="Center" FontSize="16" FontWeight="Bold" Width="auto" />
+                        <TextBox AcceptsTab="False" Width="auto" Text="" x:Name="pi" HorizontalContentAlignment="Center" Background="Wheat" VerticalContentAlignment="Center" TextChanged="pi_text_changed" TextAlignment="Center"/>
+                    </DockPanel>
+                    <DockPanel  Grid.Row="2" Grid.ColumnSpan="2" >
+                        <Label Content="Start Period" VerticalContentAlignment="Center" FontSize="16" FontWeight="Bold" Width="auto" />
+                        <TextBox VerticalContentAlignment="Center" AcceptsTab="False" Width="auto" Text="" x:Name="ps" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" HorizontalContentAlignment="Center" Background="Wheat" TextChanged="sp_text_changed" TextAlignment="Center"/>
+                    </DockPanel>
+                    <DockPanel  Grid.Row="2" Grid.ColumnSpan="2" Margin="0,36,0,36" Grid.RowSpan="3">
+                        <Label Margin="0 0 8 0" Content="End Period" VerticalContentAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" FontSize="16" FontWeight="Bold" Width="auto" />
+                        <TextBox VerticalContentAlignment="Center" AcceptsTab="False" Width="auto" Text="" x:Name="pe" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" HorizontalContentAlignment="Center" Background="Wheat" TextChanged="ep_text_changed" TextAlignment="Center"/>
+                    </DockPanel>
+                    <DockPanel Grid.Row="4" Grid.ColumnSpan="2">
+                        <Label Margin="0 0 1 0" Content="Annual Value/Future Worth" VerticalContentAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" FontSize="16" FontWeight="Bold" Width="auto" />
+                        <TextBox VerticalContentAlignment="Center" AcceptsTab="False" Width="auto" Text="" x:Name="pa" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" HorizontalContentAlignment="Center" Background="Wheat" TextChanged="pa_text_changed" TextAlignment="Center"/>
+                    </DockPanel>
+                    <DockPanel Grid.Row="4" Grid.ColumnSpan="2" Margin="0,36,0,0" Grid.RowSpan="2" >
+                        <Button Margin="5 0 0 0" Padding="0 0 100 0" MinWidth="100" x:Name="pcal" Background="OrangeRed" Content="Calculate" VerticalContentAlignment="Stretch" HorizontalContentAlignment="Stretch" Click="pcal_Click" />
+                        <TextBox  FontSize="16" Text="Present Worth:" IsReadOnly="True" AcceptsTab="False" Width="auto"  x:Name="presult" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" HorizontalContentAlignment="Left" Background="Wheat" VerticalContentAlignment="Center"/>
+                    </DockPanel>
+                </Grid>
+            </TabItem>
+
+            <TabItem x:Name="pg" Header="Present Worth With Gradient">
+                <Grid Height="auto" Width="auto" MinWidth="650" MinHeight="270">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="2*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+
+
+                    </Grid.RowDefinitions>
+                    <WrapPanel Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center">
+                        <controls:FormulaControl x:Name="pgoformula" Formula="A\cdot\left[\frac{(1+i)^{n}-1}{i\cdot(1+i)^{n}}\right] + \frac{G}{i}\cdot\left[\frac{(1+i)^{n}-1}{i\cdot(1+i)^{n}} - \frac{n}{(1+i)^{n}}\right] = P_{T} " Width="auto" Panel.ZIndex="1"/>
+                    </WrapPanel>
+                    <DockPanel Grid.Column="0" Grid.Row="1" Grid.RowSpan="4">
+                        <StackPanel Grid.Row="1" Grid.RowSpan="4" Grid.Column="0" Height="auto">
+                            <Label Content="Interest Rate%" FontSize="16" FontWeight="Bold"/>
+                            <Label Content="Annual Value" FontSize="16" FontWeight="Bold"/>
+                            <Label Content="Gradient Value" FontSize="16" FontWeight="Bold"/>
+                            <Label Content="Number of Periods" FontSize="16" FontWeight="Bold" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch"/>
+                        </StackPanel>
+                        <VirtualizingStackPanel Grid.Column="1" Grid.Row="1" Grid.RowSpan="4" Height="auto">
+
+                            <TextBox Margin="0 10 0 10" AcceptsTab="False" MinWidth="150" x:Name="pti" Background="Wheat" Width="auto" Height="NaN" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" TextAlignment="Center" TextChanged="pti_text_changed"/>
+                            <TextBox  Margin="0 0 0 10" AcceptsTab="False" MinWidth="150" x:Name="pta" Background="Wheat" Width="auto" Height="NaN" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" TextAlignment="Center" TextChanged="pta_text_changed"/>
+                            <TextBox  Margin="0 0 0 10" AcceptsTab="False" MinWidth="150" x:Name="ptg" Background="Wheat" Width="auto" Height="NaN" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" TextAlignment="Center" TextChanged="ptg_TextChanged"/>
+                            <TextBox Margin="0 5 0 10" AcceptsTab="False" MinWidth="150" x:Name="ptn" Background="Wheat" Width="auto" Height="NaN" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" TextAlignment="Center" TextChanged="ptn_TextChanged"/>
+                        </VirtualizingStackPanel>
+
+                    </DockPanel>
+
+                    <DockPanel Grid.Row="5" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+                        <Button Height="auto" BorderBrush="Red" FontSize="18" Content="Calculate" FontWeight="Bold" Background="OrangeRed" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Margin="0,0,0,0" Click="Pg_button_click"/>
+                        <TextBox  Text="Present Worth: " IsReadOnly="True" AcceptsTab="False" MinWidth="200" x:Name="ptresult" Background="Wheat" Width="auto" Height="auto" VerticalContentAlignment="Center" HorizontalContentAlignment="Left"/>
+                    </DockPanel>
+                </Grid>
+            </TabItem>
+
+            <TabItem x:Name="pgeo" Header="Present Worth With Geometric Gradient">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="2*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="2*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <DockPanel Grid.Row="0"  Grid.ColumnSpan="2">
+                        <controls:FormulaControl x:Name="geoformula" Formula="A_{1}\cdot\left[\frac{1-(1+g)^{n}\cdot(1+i)^{-n}}{i-g}\right] = P"  Width="auto" HorizontalAlignment="Center"  VerticalAlignment="Center"/>
+                    </DockPanel>
+
+                        <DockPanel Grid.Row="1">
+                            <Label Content="Interest Rate%" FontSize="16" FontWeight="Bold"/>
+                        </DockPanel>
+                    <DockPanel Grid.Row="2">
+                        <Label Content="Annual Value" FontSize="16" FontWeight="Bold"/>
+                    </DockPanel>
+                    <DockPanel Grid.Row="3">
+                        <Label Content="Geometric Gradient Value" FontSize="16" FontWeight="Bold"/>
+                    </DockPanel>
+                    <DockPanel Grid.Row="4">
+                        <Label Content="Number of Periods" FontSize="16" FontWeight="Bold" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch"/>
+                    </DockPanel>
+      
+                        <DockPanel Grid.Column="1" Grid.Row="1">
+                        <TextBox    BorderBrush="AliceBlue" BorderThickness="2" MinWidth="200" AcceptsTab="False"  x:Name="pgeoi" Background="Wheat" Width="auto" Height="NaN" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" TextAlignment="Center" TextChanged="pgeoi_TextChanged"/>
+                        </DockPanel>
+                    <DockPanel Grid.Column="1" Grid.Row="2">
+                            <TextBox  BorderBrush="AliceBlue" BorderThickness="2"  MinWidth="200" AcceptsTab="False"  x:Name="pgeoa" Background="Wheat" Width="auto" Height="NaN" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Stretch" TextAlignment="Center" TextChanged="pgeoa_TextChanged"/>
+                        </DockPanel>
+                    <DockPanel Grid.Column="1" Grid.Row="3">
+                        <TextBox   BorderBrush="AliceBlue" BorderThickness="2" MinWidth="200"   AcceptsTab="False"  x:Name="pgeog" Background="Wheat" Width="auto" Height="NaN" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Stretch" TextAlignment="Center" TextChanged="pgeog_TextChanged"/>
+
+                        </DockPanel>
+
+                    <DockPanel Grid.Column="1" Grid.Row="4">
+                        <TextBox   BorderBrush="AliceBlue" BorderThickness="2"  AcceptsTab="False"  x:Name="pgeon" Background="Wheat" Width="auto" Height="NaN" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" TextAlignment="Center" TextChanged="pgeon_TextChanged"/>
+                        </DockPanel>
+
+                  
+                    <DockPanel Grid.Column="1" Grid.Row="5">
+                        <TextBox Text="Present Worth: " IsReadOnly="True" AcceptsTab="False" MinWidth="200" x:Name="pgeoresult" Background="Wheat" Width="auto" Height="auto" VerticalContentAlignment="Center" HorizontalContentAlignment="Left"/>
+                    </DockPanel>
+                    <DockPanel Grid.Column="0" Grid.Row="5">
+                        <Button Margin="0 0 0 0" Content="Calculate" FontSize="18" Background="OrangeRed" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Click="pgeo_button_click"/>
+                    </DockPanel>
+                </Grid>
+            </TabItem>
+
+            <TabItem x:Name="pc" Header="Continuous Present Worth">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="3*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition  Height="2*"/>
+                    <RowDefinition  Height="*"/>
+                    <RowDefinition  Height="*"/>
+                    <RowDefinition  Height="*"/>
+                    <RowDefinition  Height="*"/>
+
+                </Grid.RowDefinitions>
+                <DockPanel Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <controls:FormulaControl Formula="\frac{F}{(e)^{r\cdot n}} = P" x:Name="pcformula"/> 
+                </DockPanel>
+                <DockPanel Grid.Column="0" Grid.Row="1">
+                        <Label Content="Nominal Interest Rate%" FontSize="16" FontWeight="Bold" VerticalContentAlignment="Center"/>
+                    </DockPanel>
+                <DockPanel Grid.Column="1" Grid.Row="1">
+                        <TextBox    BorderBrush="AliceBlue" BorderThickness="2" MinWidth="200" AcceptsTab="False"  x:Name="pcr" Background="Wheat" Width="auto" Height="auto" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" TextAlignment="Center" TextChanged="pcr_TextChanged"/>
+                   </DockPanel>
+                    <DockPanel Grid.Column="0" Grid.Row="2">
+                        <Label Content="Number of Periods" FontSize="16" FontWeight="Bold" VerticalContentAlignment="Center"/>
+                    </DockPanel>
+                    <DockPanel Grid.Column="1" Grid.Row="2">
+                        <TextBox    BorderBrush="AliceBlue" BorderThickness="2" MinWidth="200" AcceptsTab="False"  x:Name="pcn" Background="Wheat" Width="auto" Height="auto" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" TextAlignment="Center" TextChanged="pcn_TextChanged"/>
+                    </DockPanel>
+                    <DockPanel Grid.Column="0" Grid.Row="3">
+                        <Label Content="Future Worth" FontSize="16" FontWeight="Bold" VerticalContentAlignment="Center"/>
+                    </DockPanel>
+                    <DockPanel Grid.Column="1" Grid.Row="3">
+                        <TextBox    BorderBrush="AliceBlue" BorderThickness="2" MinWidth="200" AcceptsTab="False"  x:Name="pcf" Background="Wheat" Width="auto" Height="auto" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" TextAlignment="Center" TextChanged="pcf_TextChanged"/>
+                    </DockPanel>
+                    <DockPanel Grid.Row="5" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+                        <Button Height="auto" BorderBrush="Red" FontSize="18" Content="Number of Periods" FontWeight="Bold" Background="OrangeRed" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Margin="0,0,0,0" Click="pc_button_click"/>
+                    </DockPanel>
+                    <DockPanel Grid.Row="5" Grid.Column="1">
+                        <TextBox Text="Present Worth: " IsReadOnly="True" AcceptsTab="False" MinWidth="200" x:Name="pcresult" Background="Wheat" Width="auto" Height="auto" VerticalContentAlignment="Center" HorizontalContentAlignment="Left"/>
+                    </DockPanel>
+                </Grid>
+            </TabItem>
+
+            <TabItem x:Name="pca" Header="Continuous Present Worth">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="3*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition  Height="2*"/>
+                        <RowDefinition  Height="*"/>
+                        <RowDefinition  Height="*"/>
+                        <RowDefinition  Height="*"/>
+                        <RowDefinition  Height="*"/>
+
+                    </Grid.RowDefinitions>
+                    <DockPanel Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center">
+                        <controls:FormulaControl Formula="A\cdot\left[\frac{e^{r\cdot n}-1}{e^{r\cdot n}\cdot e^{r}-1}\right] = P" x:Name="pcaformula"/>
+                    </DockPanel>
+                    <DockPanel Grid.Column="0" Grid.Row="1">
+                        <Label Content="Nominal Interest Rate%" FontSize="16" FontWeight="Bold" VerticalContentAlignment="Center"/>
+                    </DockPanel>
+                    <DockPanel Grid.Column="1" Grid.Row="1">
+                        <TextBox    BorderBrush="AliceBlue" BorderThickness="2" MinWidth="200" AcceptsTab="False"  x:Name="pcar" Background="Wheat" Width="auto" Height="auto" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" TextAlignment="Center" TextChanged="pcar_TextChanged"/>
+                    </DockPanel>
+                    <DockPanel Grid.Column="0" Grid.Row="2">
+                        <Label Content="Number of Periods" FontSize="16" FontWeight="Bold" VerticalContentAlignment="Center"/>
+                    </DockPanel>
+                    <DockPanel Grid.Column="1" Grid.Row="2">
+                        <TextBox    BorderBrush="AliceBlue" BorderThickness="2" MinWidth="200" AcceptsTab="False"  x:Name="pcan" Background="Wheat" Width="auto" Height="auto" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" TextAlignment="Center" TextChanged="pcan_TextChanged"/>
+                    </DockPanel>
+                    <DockPanel Grid.Column="0" Grid.Row="3">
+                        <Label Content="Annual Value" FontSize="16" FontWeight="Bold" VerticalContentAlignment="Center"/>
+                    </DockPanel>
+                    <DockPanel Grid.Column="1" Grid.Row="3">
+                        <TextBox    BorderBrush="AliceBlue" BorderThickness="2" MinWidth="200" AcceptsTab="False"  x:Name="pcaa" Background="Wheat" Width="auto" Height="auto" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" TextAlignment="Center" TextChanged="pcaa_TextChanged"/>
+                    </DockPanel>
+                    <DockPanel Grid.Row="5" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+                        <Button Height="auto" BorderBrush="Red" FontSize="18" Content="Number of Periods" FontWeight="Bold" Background="OrangeRed" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Margin="0,0,0,0" Click="pca_button_click"/>
+                    </DockPanel>
+                    <DockPanel Grid.Row="5" Grid.Column="1">
+                        <TextBox Text="Present Worth: " IsReadOnly="True" AcceptsTab="False" MinWidth="200" x:Name="pcaresult" Background="Wheat" Width="auto" Height="auto" VerticalContentAlignment="Center" HorizontalContentAlignment="Left"/>
+                    </DockPanel>
+                </Grid>
+            </TabItem>
+        </TabControl>
+    </Grid>
+</Window>

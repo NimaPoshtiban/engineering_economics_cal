@@ -1,0 +1,172 @@
+﻿<Window x:Class="Calculator.Etcwindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+         xmlns:controls="clr-namespace:WpfMath.Controls;assembly=WpfMath"
+        xmlns:local="clr-namespace:Calculator"
+        mc:Ignorable="d"
+         KeyDown="Window_KeyDown"
+  Title="Other Formulas" Height="300" MinWidth="650" VerticalAlignment="Center" WindowStyle="ThreeDBorderWindow">
+    <Grid>
+        <TabControl>
+            <TabItem x:Name="i" Header="Interest Rate">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="3*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition  Height="2*"/>
+                        <RowDefinition  Height="*"/>
+                        <RowDefinition  Height="*"/>
+                        <RowDefinition  Height="*"/>
+                        <RowDefinition  Height="*"/>
+
+                    </Grid.RowDefinitions>
+                    <DockPanel Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center">
+                        <controls:FormulaControl Formula="\sqrt[n]{f/p} = interest" x:Name="iformula"/>
+                    </DockPanel>
+                    <DockPanel Grid.Column="0" Grid.Row="1">
+                        <Label Content="Future Worth" FontSize="16" FontWeight="Bold" VerticalContentAlignment="Center"/>
+                    </DockPanel>
+                    <DockPanel Grid.Column="1" Grid.Row="1">
+                        <TextBox    BorderBrush="AliceBlue" BorderThickness="2" MinWidth="200" AcceptsTab="False"  x:Name="i_f" Background="Wheat" Width="auto" Height="auto" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" TextAlignment="Center" TextChanged="i_f_TextChanged"/>
+                    </DockPanel>
+                    <DockPanel Grid.Column="0" Grid.Row="2">
+                        <Label Content="Present Worth" FontSize="16" FontWeight="Bold" VerticalContentAlignment="Center"/>
+                    </DockPanel>
+                    <DockPanel Grid.Column="1" Grid.Row="2">
+                        <TextBox    BorderBrush="AliceBlue" BorderThickness="2" MinWidth="200" AcceptsTab="False"  x:Name="i_p" Background="Wheat" Width="auto" Height="auto" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" TextAlignment="Center" TextChanged="i_p_TextChanged"/>
+                    </DockPanel>
+                    <DockPanel Grid.Column="0" Grid.Row="3">
+                        <Label Content="Number of Periods" FontSize="16" FontWeight="Bold" VerticalContentAlignment="Center"/>
+                    </DockPanel>
+                    <DockPanel Grid.Column="1" Grid.Row="3">
+                        <TextBox    BorderBrush="AliceBlue" BorderThickness="2" MinWidth="200" AcceptsTab="False"  x:Name="i_n" Background="Wheat" Width="auto" Height="auto" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" TextAlignment="Center" TextChanged="i_n_TextChanged"/>
+                    </DockPanel>
+                    <DockPanel Grid.Row="5" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+                        <Button Height="auto" BorderBrush="Red" FontSize="18" Content="Calculate" FontWeight="Bold" Background="OrangeRed" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Margin="0,0,0,0" Click="i_button_click"/>
+                    </DockPanel>
+                    <DockPanel Grid.Row="5" Grid.Column="1">
+                        <TextBox Text="Interest Rate" IsReadOnly="True" AcceptsTab="False" MinWidth="200" x:Name="iresult" Background="Wheat" Width="auto" Height="auto" VerticalContentAlignment="Center" HorizontalContentAlignment="Left"/>
+                    </DockPanel>
+                </Grid>
+            </TabItem>
+            <TabItem x:Name="ie" Header="Effective Interest Rate">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="3*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition  Height="2*"/>
+                        <RowDefinition  Height="*"/>
+                        <RowDefinition  Height="*"/>
+                        <RowDefinition  Height="*"/>
+
+                    </Grid.RowDefinitions>
+                    <DockPanel Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center">
+                        <controls:FormulaControl Formula="(1+\frac{r}{m})^{m}-1 = i_{eff}" x:Name="ieformula"/>
+                    </DockPanel>
+                    <DockPanel Grid.Column="0" Grid.Row="1">
+                        <Label Content="Nominal Interest Rate%" FontSize="16" FontWeight="Bold" VerticalContentAlignment="Center"/>
+                    </DockPanel>
+                    <DockPanel Grid.Column="1" Grid.Row="1">
+                        <TextBox    BorderBrush="AliceBlue" BorderThickness="2" MinWidth="200" AcceptsTab="False"  x:Name="ie_r" Background="Wheat" Width="auto" Height="auto" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" TextAlignment="Center" TextChanged="ie_r_TextChanged"/>
+                    </DockPanel>
+                    <DockPanel Grid.Column="0" Grid.Row="2">
+                        <Label Content="Number of Sub Periods" FontSize="16" FontWeight="Bold" VerticalContentAlignment="Center"/>
+                    </DockPanel>
+                    <DockPanel Grid.Column="1" Grid.Row="2">
+                        <TextBox    BorderBrush="AliceBlue" BorderThickness="2" MinWidth="200" AcceptsTab="False"  x:Name="ie_m" Background="Wheat" Width="auto" Height="auto" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" TextAlignment="Center" TextChanged="ie_m_TextChanged"/>
+                    </DockPanel>
+                    
+                    <DockPanel Grid.Row="3" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+                        <Button Height="auto" BorderBrush="Red" FontSize="18" Content="Calculate" FontWeight="Bold" Background="OrangeRed" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Margin="0,0,0,0" Click="ie_button_click"/>
+                    </DockPanel>
+                    <DockPanel Grid.Row="3" Grid.Column="1">
+                        <TextBox Text="Effective Rate" IsReadOnly="True" AcceptsTab="False" MinWidth="200" x:Name="ieresult" Background="Wheat" Width="auto" Height="auto" VerticalContentAlignment="Center" HorizontalContentAlignment="Left"/>
+                    </DockPanel>
+                </Grid>
+            </TabItem>
+
+            <TabItem x:Name="iec" Header="Continuous Effective Interest Rate">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="3*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition  Height="2*"/>
+                        <RowDefinition  Height="*"/>
+                        <RowDefinition  Height="*"/>
+
+                    </Grid.RowDefinitions>
+                    <DockPanel Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center">
+                        <controls:FormulaControl Formula="e^{r}-1 = i_{eff}" x:Name="iecformula"/>
+                    </DockPanel>
+                    <DockPanel Grid.Column="0" Grid.Row="1">
+                        <Label Content="Nominal Interest Rate%" FontSize="16" FontWeight="Bold" VerticalContentAlignment="Center"/>
+                    </DockPanel>
+                    <DockPanel Grid.Column="1" Grid.Row="1">
+                        <TextBox    BorderBrush="AliceBlue" BorderThickness="2" MinWidth="200" AcceptsTab="False"  x:Name="iec_r" Background="Wheat" Width="auto" Height="auto" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" TextAlignment="Center" TextChanged="iec_r_TextChanged"/>
+                    </DockPanel>
+               
+
+                    <DockPanel Grid.Row="2" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+                        <Button Height="auto" BorderBrush="Red" FontSize="18" Content="Calculate" FontWeight="Bold" Background="OrangeRed" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Margin="0,0,0,0" Click="iec_button_click"/>
+                    </DockPanel>
+                    <DockPanel Grid.Row="3" Grid.Column="1">
+                        <TextBox Text="Effective Rate%: " IsReadOnly="True" AcceptsTab="False" MinWidth="200" x:Name="iecresult" Background="Wheat" Width="auto" Height="auto" VerticalContentAlignment="Center" HorizontalContentAlignment="Left"/>
+                    </DockPanel>
+                </Grid>
+            </TabItem>
+
+            <TabItem x:Name="n" Header="Number of Periods">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="3*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition  Height="2*"/>
+                        <RowDefinition  Height="*"/>
+                        <RowDefinition  Height="*"/>
+                        <RowDefinition  Height="*"/>
+                        <RowDefinition  Height="*"/>
+
+                    </Grid.RowDefinitions>
+                    <DockPanel Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center">
+                        <controls:FormulaControl Formula="\left\lceil\frac {\ln(\frac{F}{P})}{\ln(i+1)}\right\rceil = n" x:Name="nformula"/>
+                    </DockPanel>
+                    <DockPanel Grid.Column="0" Grid.Row="1">
+                        <Label Content="Future Worth" FontSize="16" FontWeight="Bold" VerticalContentAlignment="Center"/>
+                    </DockPanel>
+                    <DockPanel Grid.Column="1" Grid.Row="1">
+                        <TextBox    BorderBrush="AliceBlue" BorderThickness="2" MinWidth="200" AcceptsTab="False"  x:Name="n_f" Background="Wheat" Width="auto" Height="auto" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" TextAlignment="Center" TextChanged="n_f_TextChanged"/>
+                    </DockPanel>
+                    <DockPanel Grid.Column="0" Grid.Row="2">
+                        <Label Content="Present Worth" FontSize="16" FontWeight="Bold" VerticalContentAlignment="Center"/>
+                    </DockPanel>
+                    <DockPanel Grid.Column="1" Grid.Row="2">
+                        <TextBox    BorderBrush="AliceBlue" BorderThickness="2" MinWidth="200" AcceptsTab="False"  x:Name="n_p" Background="Wheat" Width="auto" Height="auto" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" TextAlignment="Center" TextChanged="n_p_TextChanged"/>
+                    </DockPanel>
+                    <DockPanel Grid.Column="0" Grid.Row="3">
+                        <Label Content="Interest Rate%" FontSize="16" FontWeight="Bold" VerticalContentAlignment="Center"/>
+                    </DockPanel>
+                    <DockPanel Grid.Column="1" Grid.Row="3">
+                        <TextBox    BorderBrush="AliceBlue" BorderThickness="2" MinWidth="200" AcceptsTab="False"  x:Name="n_i" Background="Wheat" Width="auto" Height="auto" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" TextAlignment="Center" TextChanged="n_i_TextChanged"/>
+                    </DockPanel>
+                    <DockPanel Grid.Row="5" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+                        <Button Height="auto" BorderBrush="Red" FontSize="18" Content="Calculate" FontWeight="Bold" Background="OrangeRed" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Margin="0,0,0,0" Click="n_button_click"/>
+                    </DockPanel>
+                    <DockPanel Grid.Row="5" Grid.Column="1">
+                        <TextBox Text="Interest Rate" IsReadOnly="True" AcceptsTab="False" MinWidth="200" x:Name="nresult" Background="Wheat" Width="auto" Height="auto" VerticalContentAlignment="Center" HorizontalContentAlignment="Left"/>
+                    </DockPanel>
+                </Grid>
+            </TabItem>
+
+        </TabControl>
+    </Grid>
+</Window>
