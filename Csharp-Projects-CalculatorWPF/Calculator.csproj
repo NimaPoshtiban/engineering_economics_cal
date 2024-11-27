@@ -2,7 +2,7 @@
 
 	<PropertyGroup>
 		<OutputType>WinExe</OutputType>
-		<TargetFramework>net8.0-windows7.0</TargetFramework>
+		<TargetFramework>net8.0-windows10.0.22621.0</TargetFramework>
 		<Nullable>enable</Nullable>
 		<UseWPF>true</UseWPF>
 		<AllowUnsafeBlocks>True</AllowUnsafeBlocks>
@@ -18,10 +18,12 @@
 		<StartupObject>Calculator.App</StartupObject>
 		<ApplicationIcon>calculatorIcon.ico</ApplicationIcon>
 		<RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
+		<UseWindowsForms>False</UseWindowsForms>
+		<PlatformTarget>x64</PlatformTarget>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-		<Optimize>False</Optimize>
+		<Optimize>True</Optimize>
 		<DebugType>embedded</DebugType>
 		<FileAlignment>4096</FileAlignment>
 	</PropertyGroup>
@@ -29,7 +31,7 @@
 	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
 		<DebugType>embedded</DebugType>
 		<FileAlignment>4096</FileAlignment>
-		<Optimize>False</Optimize>
+		<Optimize>True</Optimize>
 	</PropertyGroup>
 
 	<ItemGroup>
@@ -68,7 +70,7 @@
 		  <CopyLocalSatelliteAssemblies>True</CopyLocalSatelliteAssemblies>
 		  <EmbedInteropTypes>True</EmbedInteropTypes>
 		  <ReferenceOutputAssembly>True</ReferenceOutputAssembly>
-		  <Aliases>formulas.dll</Aliases>
+		  <Aliases></Aliases>
 		</ProjectReference>
 	</ItemGroup>
 
