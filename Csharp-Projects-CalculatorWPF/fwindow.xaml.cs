@@ -55,12 +55,12 @@ namespace Calculator
 
   
         [DefaultDllImportSearchPaths(DllImportSearchPath.AssemblyDirectory)]
-        [DllImport("C:\\Users\\nima\\Source\\Repos\\NimaPoshtiban\\Csharp-Projects-CalculatorWPF\\formulas.dll")]
+        [DllImport("C:\\Users\\nima\\source\\repos\\NimaPoshtiban\\Csharp-Projects-CalculatorWPF\\formulas.dll")]
         static extern double calculate_future(double p, double i, int n);
-        [DllImport("C:\\Users\\nima\\Source\\Repos\\NimaPoshtiban\\Csharp-Projects-CalculatorWPF\\formulas.dll")]
+        [DllImport("C:\\Users\\nima\\source\\repos\\NimaPoshtiban\\Csharp-Projects-CalculatorWPF\\formulas.dll")]
         static extern double calcualate_future_via_annual_uniform(double annual_uniform,
                                                    double interest, int n);
-        [DllImport("C:\\Users\\nima\\Source\\Repos\\NimaPoshtiban\\Csharp-Projects-CalculatorWPF\\formulas.dll")]
+        [DllImport("C:\\Users\\nima\\source\\repos\\NimaPoshtiban\\Csharp-Projects-CalculatorWPF\\formulas.dll")]
         static extern double calcualate_future_via_annual_uniform_c(double a, double r, int n);
         private void Button_Click_fc(object sender, RoutedEventArgs e)
         {
@@ -73,7 +73,7 @@ namespace Calculator
             frac.Text = _lastValue.ToString("");
             ((MainWindow)Application.Current.MainWindow).resultLabel.Content = frac.Text;
         }
-        [DllImport("C:\\Users\\nima\\Source\\Repos\\NimaPoshtiban\\Csharp-Projects-CalculatorWPF\\formulas.dll")]
+        [DllImport("C:\\Users\\nima\\source\\repos\\NimaPoshtiban\\Csharp-Projects-CalculatorWPF\\formulas.dll")]
         static extern   double calculate_future_c(double p, double r, int n);
         private void Button_Click_fcc(object sender, RoutedEventArgs e)
         {

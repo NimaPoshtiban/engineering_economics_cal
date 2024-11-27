@@ -112,20 +112,20 @@ namespace Calculator
         }
 
         [DefaultDllImportSearchPaths(DllImportSearchPath.AssemblyDirectory)]
-        [DllImport("C:\\Users\\nima\\source\\repos\\NimaPoshtiban\\Csharp-Projects-CalculatorWPF\\bin\\Debug\\net8.0-windows7.0\\formulas.dll")]
+        [DllImport("C:\\Users\\nima\\source\\repos\\NimaPoshtiban\\Csharp-Projects-CalculatorWPF\\formulas.dll")]
         static extern  double calculate_interest(double f, double p, int n);
 
         [DefaultDllImportSearchPaths(DllImportSearchPath.AssemblyDirectory)]
-        [DllImport("C:\\Users\\nima\\source\\repos\\NimaPoshtiban\\Csharp-Projects-CalculatorWPF\\bin\\Debug\\net8.0-windows7.0\\formulas.dll")]
+        [DllImport("C:\\Users\\nima\\source\\repos\\NimaPoshtiban\\Csharp-Projects-CalculatorWPF\\formulas.dll")]
         static extern double calculate_effective_interest_rate(double r, double m);
 
         [DefaultDllImportSearchPaths(DllImportSearchPath.AssemblyDirectory)]
-        [DllImport("C:\\Users\\nima\\source\\repos\\NimaPoshtiban\\Csharp-Projects-CalculatorWPF\\bin\\Debug\\net8.0-windows7.0\\formulas.dll")]
+        [DllImport("C:\\Users\\nima\\source\\repos\\NimaPoshtiban\\Csharp-Projects-CalculatorWPF\\formulas.dll")]
         static extern double calculate_effective_interest_rate_c(double r);
 
 
         [DefaultDllImportSearchPaths(DllImportSearchPath.AssemblyDirectory)]
-        [DllImport("C:\\Users\\nima\\source\\repos\\NimaPoshtiban\\Csharp-Projects-CalculatorWPF\\bin\\Debug\\net8.0-windows7.0\\formulas.dll")]
+        [DllImport("C:\\Users\\nima\\source\\repos\\NimaPoshtiban\\Csharp-Projects-CalculatorWPF\\formulas.dll")]
        static  extern int calculate_n(double i, double f, double p);
         private void ie_r_TextChanged(object sender, TextChangedEventArgs e)
         {

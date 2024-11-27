@@ -59,23 +59,27 @@ namespace Calculator
         {
             if (double.TryParse(resultLabel.Content.ToString(), out double newNumber))
             {
-                if (selected_type==FormulaType.Simple)
-                {
-                    lastNumber += newNumber;
-                }
+               
                 switch (selectedOperator)
                 {
                     case SelectedOperator.Addition:
                         result = SimpleMath.Add(lastNumber, newNumber);
+                        lastNumber = result;
                         break;
                     case SelectedOperator.Subtraction:
                         result = SimpleMath.Subtraction(lastNumber, newNumber);
+                        lastNumber = result;
+
                         break;
                     case SelectedOperator.Division:
                         result = SimpleMath.Divide(lastNumber, newNumber);
+                        lastNumber = result;
+
                         break;
                     case SelectedOperator.Multiplication:
                         result = SimpleMath.Multiply(lastNumber, newNumber);
+                        lastNumber = result;
+
                         break;
                 }
                 resultLabel.Content = result.ToString();
