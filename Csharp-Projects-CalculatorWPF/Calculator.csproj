@@ -43,9 +43,9 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <EmbeddedResource Include="formulas.dll">
-	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-	  </EmbeddedResource>
+		<EmbeddedResource Include="formulas.dll">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</EmbeddedResource>
 	</ItemGroup>
 
 
@@ -62,16 +62,6 @@
 		<PackageReference Include="Microsoft.Extensions.Configuration" Version="9.0.0" />
 		<PackageReference Include="Microsoft.Extensions.Configuration.UserSecrets" Version="9.0.0" />
 		<PackageReference Include="WpfMath" Version="2.1.0" />
-	</ItemGroup>
-
-	<ItemGroup>
-		<ProjectReference Include="..\formulas\formulas.vcxproj">
-		  <Private>True</Private>
-		  <CopyLocalSatelliteAssemblies>True</CopyLocalSatelliteAssemblies>
-		  <EmbedInteropTypes>True</EmbedInteropTypes>
-		  <ReferenceOutputAssembly>True</ReferenceOutputAssembly>
-		  <Aliases></Aliases>
-		</ProjectReference>
 	</ItemGroup>
 
 	<ItemGroup>
