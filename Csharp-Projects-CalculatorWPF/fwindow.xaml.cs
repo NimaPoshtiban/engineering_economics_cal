@@ -25,6 +25,12 @@ namespace Calculator
     {
         private double _lastValue =0;
         public string formula_f { get; set; } = @"P\cdot(1+i)^{n} = F";
+        public string formula_fa { get; set; } = @"A\cdot\left[\frac{(1+i)^{n}-1}{i}\right] = F";
+        public string formula_fac { get; set; } = @"A\cdot\left[\frac{(e)^{r\cdot n}-1}{e^{r}-1}\right] = F";
+        public string formula_fc { get; set; } = @"P\cdot(e)^{r\cdot n} = F";
+
+
+
         public Fwindow()
         {
             InitializeComponent();
@@ -82,8 +88,48 @@ namespace Calculator
             formula_f = f_formula.Formula;
             ((MainWindow)Application.Current.MainWindow).resultLabel.Content = fr.Text;
         }
-       
 
+
+
+        private void iva_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            var tb = (TextBox)sender;
+            if (String.IsNullOrEmpty(tb.Text))
+            {
+                tb.Text = "0";
+            }
+            tb.Text = Regex.IsMatch(tb.Text, @"^\-?[0-9]*\.?[0-9]*$") ? tb.Text : "0";
+            var reg = new RegularExpressionAttribute(@"\+(i|\-?\d*\.?\d*)");
+            fa_formula.Formula = Regex.Replace(fa_formula.Formula, reg.Pattern, "+" + tb.Text, RegexOptions.IgnoreCase);
+            var reg_2 = new RegularExpressionAttribute(@"(i|\-?\d*\.?\d*)\}\\right");
+            fa_formula.Formula = Regex.Replace(fa_formula.Formula, reg_2.Pattern, tb.Text + @"}\right", RegexOptions.IgnoreCase);
+            formula_fa = fa_formula.Formula;
+        }
+        private void nva_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+            var tb = (TextBox)sender;
+            if (String.IsNullOrEmpty(tb.Text))
+            {
+                tb.Text = "0";
+            }
+            tb.Text = Regex.IsMatch(tb.Text, @"^[0-9]*$") ? tb.Text : "0";
+            var reg = new RegularExpressionAttribute(@"\^\{(n|\-?\d*\.?\d*)");
+            fa_formula.Formula = Regex.Replace(fa_formula.Formula, reg.Pattern, @"^{" + tb.Text, RegexOptions.IgnoreCase);
+            formula_fa = fa_formula.Formula;
+        }
+        private void av_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            var tb = (TextBox)sender;
+            if (String.IsNullOrEmpty(tb.Text))
+            {
+                tb.Text = "0";
+            }
+            tb.Text = Regex.IsMatch(tb.Text, @"^\-?[0-9]*\.?[0-9]*$") ? tb.Text : "0";
+            var reg = new RegularExpressionAttribute(@"^(A|\-?\d*\.?\d*)");
+            fa_formula.Formula = Regex.Replace(fa_formula.Formula, reg.Pattern, tb.Text, RegexOptions.IgnoreCase);
+            formula_fa = fa_formula.Formula;
+        }
         private void Button_Click_a(object sender, RoutedEventArgs e)
         {
             double.TryParse(iva.Text, out double interest);
@@ -93,6 +139,8 @@ namespace Calculator
 
             _lastValue = calcualate_future_via_annual_uniform(a, interest, n);
             fra.Text = _lastValue.ToString("");
+            fa_formula.Formula = formula_fa.Replace("F", fra.Text);
+            formula_fa = fa_formula.Formula;
             ((MainWindow)Application.Current.MainWindow).resultLabel.Content = fra.Text;
         }
 
@@ -105,28 +153,114 @@ namespace Calculator
                                                    double interest, int n);
         [DllImport("formulas.dll")]
         static extern double calcualate_future_via_annual_uniform_c(double a, double r, int n);
+
+
+
+        private void fanc_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            var tb = (TextBox)sender;
+            if (String.IsNullOrEmpty(tb.Text))
+            {
+                tb.Text = "0";
+            }
+            tb.Text = Regex.IsMatch(tb.Text, @"^\-?[0-9]*\.?[0-9]*$") ? tb.Text : "0";
+            var reg = new RegularExpressionAttribute(@"^(A|\-?\d*\.?\d*)");
+            fac_formula.Formula = Regex.Replace(fac_formula.Formula, reg.Pattern, tb.Text, RegexOptions.IgnoreCase);
+            formula_fac = fac_formula.Formula;
+        }
+
+        private void faic_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            var tb = (TextBox)sender;
+            if (String.IsNullOrEmpty(tb.Text))
+            {
+                tb.Text = "0";
+            }
+            tb.Text = Regex.IsMatch(tb.Text, @"^\-?[0-9]*\.?[0-9]*$") ? tb.Text : "0";
+            var reg = new RegularExpressionAttribute(@"\^\{(r|\-?\d*\.?\d*)\\cdot");
+            fac_formula.Formula = Regex.Replace(fac_formula.Formula, reg.Pattern, @"^{" + tb.Text+@"\cdot", RegexOptions.IgnoreCase);
+            var reg_2 = new RegularExpressionAttribute(@"\^\{(r|\-?\d*\.?\d*)");
+            fac_formula.Formula = Regex.Replace(fac_formula.Formula, reg_2.Pattern, @"^{" + tb.Text , RegexOptions.IgnoreCase);
+            formula_fac = fac_formula.Formula;
+        }
+        private void farc_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            var tb = (TextBox)sender;
+            if (String.IsNullOrEmpty(tb.Text))
+            {
+                tb.Text = "0";
+            }
+            tb.Text = Regex.IsMatch(tb.Text, @"^[0-9]*$") ? tb.Text : "0";
+            var reg = new RegularExpressionAttribute(@"\\cdot(n|\-?\d*\.?\d*)");
+            fac_formula.Formula = Regex.Replace(fac_formula.Formula, reg.Pattern, @"\cdot" + tb.Text, RegexOptions.IgnoreCase);
+            formula_fac = fac_formula.Formula;
+        }
         private void Button_Click_fc(object sender, RoutedEventArgs e)
         {
             double.TryParse(fanc.Text, out double a);
-            double.TryParse(farc.Text, out double r);
-            int.TryParse(fanc.Text, out int n);
+            double.TryParse(faic.Text, out double r);
+            int.TryParse(farc.Text, out int n);
 
 
             _lastValue = calcualate_future_via_annual_uniform_c(a, r, n);
             frac.Text = _lastValue.ToString("");
+            fac_formula.Formula = formula_fac.Replace("F", frac.Text);
+            formula_fac = fac_formula.Formula;
             ((MainWindow)Application.Current.MainWindow).resultLabel.Content = frac.Text;
         }
         [DllImport("formulas.dll")]
-        static extern   double calculate_future_c(double p, double r, int n);
+        static extern  double calculate_future_c(double p, double r, int n);
+
+        private void fcr_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            var tb = (TextBox)sender;
+            if (String.IsNullOrEmpty(tb.Text))
+            {
+                tb.Text = "0";
+            }
+            tb.Text = Regex.IsMatch(tb.Text, @"^\-?[0-9]*\.?[0-9]*$") ? tb.Text : "0";
+            var reg = new RegularExpressionAttribute(@"\^\{(r|\-?\d*\.?\d*)");
+            fc_formula.Formula = Regex.Replace(fc_formula.Formula, reg.Pattern, @"^{" + tb.Text, RegexOptions.IgnoreCase);
+            formula_fc = fc_formula.Formula;
+        }
+
+        private void fcp_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            var tb = (TextBox)sender;
+            if (String.IsNullOrEmpty(tb.Text))
+            {
+                tb.Text = "0";
+            }
+            tb.Text = Regex.IsMatch(tb.Text, @"^\-?[0-9]*\.?[0-9]*$") ? tb.Text : "0";
+            var reg = new RegularExpressionAttribute(@"^(P|\-?\d*\.?\d*)");
+            fc_formula.Formula = Regex.Replace(fc_formula.Formula, reg.Pattern, tb.Text, RegexOptions.IgnoreCase);
+            formula_fc = fc_formula.Formula;
+        }
+
+        private void fcn_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            var tb = (TextBox)sender;
+            if (String.IsNullOrEmpty(tb.Text))
+            {
+                tb.Text = "0";
+            }
+            tb.Text = Regex.IsMatch(tb.Text, @"^[0-9]*$") ? tb.Text : "0";
+            var reg = new RegularExpressionAttribute(@"\\cdot\s(n|\-?\d*\.?\d*)");
+            fc_formula.Formula = Regex.Replace(fc_formula.Formula, reg.Pattern, @"\cdot "+tb.Text, RegexOptions.IgnoreCase);
+            formula_fc = fc_formula.Formula;
+        }
+
         private void Button_Click_fcc(object sender, RoutedEventArgs e)
         {
-            double.TryParse(fanc.Text, out double p);
-            double.TryParse(farc.Text, out double r);
-            int.TryParse(fanc.Text, out int n);
+            double.TryParse(fcr.Text, out double p);
+            double.TryParse(fcp.Text, out double r);
+            int.TryParse(fcn.Text, out int n);
 
 
             _lastValue = calculate_future_c(p, r, n);
             rfc.Text = _lastValue.ToString("");
+            fc_formula.Formula = formula_fc.Replace("F", rfc.Text);
+            formula_fc = fc_formula.Formula;
             ((MainWindow)Application.Current.MainWindow).resultLabel.Content = rfc.Text;
         }
 
@@ -153,6 +287,6 @@ namespace Calculator
             }
         }
 
-      
+    
     }
 }

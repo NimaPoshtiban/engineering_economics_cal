@@ -53,7 +53,7 @@
 
             </TabItem>
 
-            <TabItem Name="fa" Header="Future With Annual Value">
+            <TabItem Name="fa" Header="Future With Annual Value" Height="20" VerticalAlignment="Top">
                 <Grid Background="Silver">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="*"/>
@@ -68,38 +68,37 @@
                         <ColumnDefinition Width="6*"/>
                         <ColumnDefinition Width="7*"/>
                     </Grid.ColumnDefinitions>
-
+                    <DockPanel Grid.ColumnSpan="3" HorizontalAlignment="Center" VerticalAlignment="Center" Background="WhiteSmoke">
+                        <controls:FormulaControl x:Name="fa_formula" Formula="A\cdot\left[\frac{(1+i)^{n}-1}{i}\right] = F"/>
+                    </DockPanel>
                     <TextBlock Grid.Column="0" Grid.ColumnSpan="3"  Grid.Row="1">
     <Label Content="Interest Rate%" FontSize="12" FontWeight="Bold" HorizontalAlignment="Left"/>
-     <TextBox AcceptsTab="False" x:Name="iva" Margin="24 3 20 2" Padding="1 2 2 2" CaretIndex="0" Width="150"  CacheMode="BitmapCache" InputScope="Number" MinWidth="150" MinHeight="22" TextAlignment="Center"/>
+     <TextBox TextChanged="iva_TextChanged" AcceptsTab="False" x:Name="iva"  CaretIndex="0" Width="150"  CacheMode="BitmapCache" InputScope="Number" MinWidth="150" MinHeight="22" TextAlignment="Center"/>
 
                     </TextBlock>
                     <TextBlock Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="3">
     <Label Content="Annual Value" FontSize="12" FontWeight="Bold" HorizontalAlignment="Left"/>
-    <TextBox x:Name="av" AcceptsTab="False"  Margin="31 2 20 2 " Padding="1 2 2 2" CaretIndex="1" Width="150"  CacheMode="BitmapCache" InputScope="Number" TextAlignment="Center"/>
+    <TextBox TextChanged="av_TextChanged" x:Name="av" AcceptsTab="False"  CaretIndex="1" Width="150"  CacheMode="BitmapCache" InputScope="Number" TextAlignment="Center"/>
 
                     </TextBlock>
                     <TextBlock Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="3">
     <Label Content="Number of Periods" FontSize="12" FontWeight="Bold" HorizontalAlignment="Left"/>
-    <TextBox x:Name="nva" Margin="-1 1 1 1" Padding="1 2 2 2" CaretIndex="2" Width="150" AcceptsTab="False" CacheMode="BitmapCache" InputScope="Number" TextAlignment="Center"/>
+    <TextBox TextChanged="nva_TextChanged" x:Name="nva"  CaretIndex="2" Width="150" AcceptsTab="False" CacheMode="BitmapCache" InputScope="Number" TextAlignment="Center"/>
 
                     </TextBlock>
                     <Button FontSize="12" Grid.Column="0" Grid.Row="4" Content="Calculate" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"  Background="OrangeRed" Click="Button_Click_a" Height="NaN" Width="NaN" Grid.ColumnSpan="2" Margin="0,0,0,0"/>
 
                     <TextBox IsReadOnly="True" Text="Future Value: " x:Name="fra" VerticalContentAlignment="Center" Background="Wheat" Grid.Row="4" Grid.Column="2" />
-                    <Image  x:Name="fapic" VerticalAlignment="Center" Width="{Binding Source.PixelWidth,RelativeSource={RelativeSource Self}}" Height="{Binding Source.PixelHeight,RelativeSource={RelativeSource Self}}" HorizontalAlignment="Left"  Grid.Column="1" Grid.ColumnSpan="2" Margin="230,0,0,0"  >
-                        <Image.Source>
-                            <BitmapImage UriSource="/images/futurea.jpg"/>
-                        </Image.Source>
-                    </Image>
+
                 </Grid>
             </TabItem>
 
             <TabItem  x:Name="fac" Header="Continuous Future Worth With Annual Value" >
                 <Grid Background="Silver">
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="39*"/>
+                        <ColumnDefinition Width="283*"/>
+                        <ColumnDefinition Width="322*"/>
                     </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="*"/>
@@ -109,24 +108,22 @@
                         <RowDefinition Height="*"/>
 
                     </Grid.RowDefinitions>
-                    <Image  x:Name="fcpic" VerticalAlignment="Center" Width="{Binding Source.PixelWidth,RelativeSource={RelativeSource Self}}" Height="{Binding Source.PixelHeight,RelativeSource={RelativeSource Self}}" HorizontalAlignment="Center"  Grid.Column="0" Grid.ColumnSpan="2"  >
-                        <Image.Source>
-                            <BitmapImage UriSource="/images/cfuture.jpg"/>
-                        </Image.Source>
-                    </Image>
-                    <DockPanel Width="auto" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2">
+                    <DockPanel Grid.ColumnSpan="3">
+                        <controls:FormulaControl x:Name="fac_formula" Formula="A\cdot\left[\frac{(e)^{r\cdot n}-1}{e^{r}-1}\right] = F" Background="White" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </DockPanel>
+                    <DockPanel Width="auto" Grid.Column="0" Grid.ColumnSpan="3" Margin="0,51,0,0" Grid.RowSpan="2">
                         <Label Content="Annual Value" FontSize="12" FontWeight="Bold" VerticalContentAlignment="Center" />
-                        <TextBox AcceptsTab="False" Margin="70 0 5 0" Grid.Column="1" Text="" x:Name="fanc" VerticalContentAlignment="Center" Background="White" Width="auto" VerticalAlignment="Center" InputScope="Number"/>
+                        <TextBox TextChanged="fanc_TextChanged" AcceptsTab="False" Margin="70 0 5 0" Grid.Column="1" Text="" x:Name="fanc" VerticalContentAlignment="Center" Background="White" Width="auto" VerticalAlignment="Center" InputScope="Number"/>
                     </DockPanel>
-                    <DockPanel Width="auto" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2">
+                    <DockPanel Width="auto" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" Margin="0,51,0,51" Grid.RowSpan="3">
                         <Label Content="Nominal Interest Rate%" FontSize="12" FontWeight="Bold" VerticalContentAlignment="Center"/>
-                        <TextBox AcceptsTab="False" Margin="10 0 5 0" Grid.Column="1" Text="" x:Name="faic" VerticalContentAlignment="Center" Background="White" Width="auto" VerticalAlignment="Center" InputScope="Number"/>
+                        <TextBox TextChanged="faic_TextChanged" AcceptsTab="False" Margin="10 0 5 0" Grid.Column="1" Text="" x:Name="faic" VerticalContentAlignment="Center" Background="White" Width="auto" VerticalAlignment="Center" InputScope="Number"/>
                     </DockPanel>
-                    <DockPanel Width="auto" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2">
+                    <DockPanel Width="auto" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="3" Margin="0,0,0,51" Grid.RowSpan="2">
                         <Label Content="Number of Periods" FontSize="12" FontWeight="Bold" VerticalContentAlignment="Center"/>
-                        <TextBox AcceptsTab="False" Margin="36 0 5 0" Grid.Column="1" Text="" x:Name="farc" VerticalContentAlignment="Center" Background="White" Width="auto" VerticalAlignment="Center" InputScope="Number"/>
+                        <TextBox TextChanged="farc_TextChanged" AcceptsTab="False" Margin="36 0 5 0" Grid.Column="1" Text="" x:Name="farc" VerticalContentAlignment="Center" Background="White" Width="auto" VerticalAlignment="Center" InputScope="Number"/>
                     </DockPanel>
-                    <DockPanel  Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2">
+                    <DockPanel  Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="3">
                         <Button Background="OrangeRed" Content="Calculate" FontSize="12" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Margin="0,0,0,0" BorderThickness="1,1,1,1" Height="NaN" Width="150" FontWeight="Bold" Click="Button_Click_fc"/>
                         <TextBox IsReadOnly="True" Grid.Column="1" Text="Future Value: " x:Name="frac" VerticalContentAlignment="Center" Background="Wheat"/>
                     </DockPanel>
@@ -151,26 +148,24 @@
                         <RowDefinition Height="*"/>
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
-                    <Image  x:Name="fapicc" VerticalAlignment="Center" Width="{Binding Source.PixelWidth,RelativeSource={RelativeSource Self}}" Height="{Binding Source.PixelHeight,RelativeSource={RelativeSource Self}}" HorizontalAlignment="Center"  Grid.Column="0" Grid.ColumnSpan="2"  >
-                        <Image.Source>
-                            <BitmapImage UriSource="/images/ccfuture.jpg"/>
-                        </Image.Source>
-                    </Image>
+                    <DockPanel HorizontalAlignment="Center" Grid.ColumnSpan="3" VerticalAlignment="Center" Background="WhiteSmoke" MinWidth="100" MinHeight="40">
+                        <controls:FormulaControl Formula="P\cdot(e)^{r\cdot n} = F" x:Name="fc_formula" VerticalContentAlignment="Center" />
+                    </DockPanel>
                     <DockPanel Grid.Row="1" Grid.ColumnSpan="2">
                         <Label VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Column="0" Content="Nominal Interest Rate%" FontSize="12" FontWeight="Bold"/>
-                        <TextBox   AcceptsTab="False" x:Name="fcr" Grid.Column="1" VerticalAlignment="Center" TextAlignment="Center"/>
+                        <TextBox  TextChanged="fcr_TextChanged" AcceptsTab="False" x:Name="fcr" Grid.Column="1" VerticalAlignment="Center" TextAlignment="Center"/>
                     </DockPanel>
                     <DockPanel Grid.Row="2" Grid.ColumnSpan="2">
                         <Label VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Column="0" Content="Present Worth" FontSize="12" FontWeight="Bold" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Center"/>
-                        <TextBox AcceptsTab="False" x:Name="fcp" Grid.Column="1" TextAlignment="Center" VerticalAlignment="Center" Margin="51,0,0,0"/>
+                        <TextBox TextChanged="fcp_TextChanged" AcceptsTab="False" x:Name="fcp" Grid.Column="1" TextAlignment="Center" VerticalAlignment="Center" Margin="51,0,0,0"/>
                     </DockPanel>
                     <DockPanel Grid.Row="3" Grid.ColumnSpan="2">
                         <Label VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Column="0" Content="Number of Periods" FontSize="12" FontWeight="Bold" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Center"/>
-                        <TextBox AcceptsTab="False" x:Name="fcn" Grid.Column="1" TextAlignment="Center" VerticalAlignment="Center" Margin="25,0,0,0"/>
+                        <TextBox TextChanged="fcn_TextChanged" AcceptsTab="False" x:Name="fcn" Grid.Column="1" TextAlignment="Center" VerticalAlignment="Center" Margin="25,0,0,0"/>
                     </DockPanel>
                     <DockPanel Grid.Row="4" Grid.ColumnSpan="2">
                         <Button Click="Button_Click_fcc" Background="OrangeRed" Grid.Column="0" Content="Calculate" FontSize="12" FontWeight="Bold" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Margin="0,0,0,0" Grid.ColumnSpan="2" Height="45.216" Width="260"/>
-                        <TextBox VerticalContentAlignment="Center" Text="Future Worth: " IsReadOnly="True" Background="Wheat" x:Name="rfc" Grid.Column="1" Margin="2,0,0,0" HorizontalContentAlignment="Stretch" HorizontalAlignment="Stretch" Height="45.216"/>
+                        <TextBox  VerticalContentAlignment="Center" Text="Future Worth: " IsReadOnly="True" Background="Wheat" x:Name="rfc" Grid.Column="1" Margin="2,0,0,0" HorizontalContentAlignment="Stretch" HorizontalAlignment="Stretch" Height="45.216"/>
                     </DockPanel>
                 </Grid>
             </TabItem>
