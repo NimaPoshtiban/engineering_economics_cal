@@ -17,7 +17,7 @@
             <TabItem x:Name="sf" Header="Future Worth" >
                 <Grid Background="Silver">
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="*"/>
+                        <RowDefinition/>
                         <RowDefinition Height="*"/>
                         <RowDefinition Height="*"/>
                         <RowDefinition Height="*"/>
@@ -28,26 +28,24 @@
                         <ColumnDefinition Width="*"/>
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
+                    <DockPanel Grid.ColumnSpan="3" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center" Background="WhiteSmoke" MinHeight="40">
+                        <controls:FormulaControl x:Name="f_formula" Formula="P\cdot(1+i)^{n} = F"  VerticalAlignment="Center"/>
+                    </DockPanel>
                     <TextBlock Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3">
                         <Label Content="Interest Rate%" FontSize="12" FontWeight="Bold"/>
-                         <TextBox x:Name="iv" Margin="24 3 20 2" Padding="1 2 2 2" CaretIndex="0" Width="150" AcceptsTab="False" CacheMode="BitmapCache" InputScope="Number"></TextBox>
+                         <TextBox x:Name="iv" Margin="24 3 20 2" Padding="1 2 2 2" CaretIndex="0" Width="150" AcceptsTab="False" CacheMode="BitmapCache" InputScope="Number" TextAlignment="Center" TextChanged="iv_TextChanged" ></TextBox>
                     </TextBlock>
-                    <TextBlock Grid.Row="2"  VerticalAlignment="Center" Grid.Column="0" Grid.ColumnSpan="3">
+                    <TextBlock Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="3">
                         <Label Content="Present Worth" FontSize="12" FontWeight="Bold" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch"/>
-                        <TextBox AcceptsReturn="False" x:Name="pv" Margin="24 2 20 2 " Padding="1 2 2 2" CaretIndex="1" Width="150" AcceptsTab="False" CacheMode="BitmapCache" InputScope="Number" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch"></TextBox>
+                        <TextBox TextChanged="pv_TextChanged" AcceptsReturn="False" x:Name="pv" Margin="24 2 20 2 " Padding="1 2 2 2" CaretIndex="1" Width="150" AcceptsTab="False" CacheMode="BitmapCache" InputScope="Number" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" TextAlignment="Center"></TextBox>
                     </TextBlock>
                     <TextBlock Grid.Row="3"  VerticalAlignment="Center" Grid.Column="0" Grid.ColumnSpan="3">
                         <Label Content="Number of Periods" FontSize="12" FontWeight="Bold"/>
-                        <TextBox AcceptsTab="False" x:Name="nv" Margin="1 1 1 1" Padding="1 2 2 2" CaretIndex="2" Width="150"  CacheMode="BitmapCache" InputScope="Digits" MinWidth="150" MinHeight="22"/>
+                        <TextBox TextChanged="nv_TextChanged" AcceptsTab="False" x:Name="nv" Margin="1 1 1 1" Padding="1 2 2 2" CaretIndex="2" Width="150"  CacheMode="BitmapCache" InputScope="Digits" MinWidth="150" MinHeight="22" TextAlignment="Center"/>
                     </TextBlock>
                     <Button FontSize="10" Grid.Column="0" Grid.Row="4" Content="Calculate" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"  Background="OrangeRed" Click="Button_Click" Height="NaN"  Width="NaN" Grid.ColumnSpan="1" Margin="0,0,0,0"/>
                     <TextBox IsReadOnly="True" Text="Future Value: " x:Name="fr" VerticalContentAlignment="Center" Background="Wheat" Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="2" />
 
-                    <Image Grid.Column="0" Grid.ColumnSpan="2" Stretch="Uniform"  x:Name="fspic" VerticalAlignment="Center" Width="{Binding Source.PixelWidth,RelativeSource={RelativeSource Self}}" Height="{Binding Source.PixelHeight,RelativeSource={RelativeSource Self}}" HorizontalAlignment="Center" >
-                        <Image.Source>
-                            <BitmapImage UriSource="/images/future.jpg"/>
-                        </Image.Source>
-                    </Image>
 
                 </Grid>
 
@@ -71,19 +69,19 @@
                         <ColumnDefinition Width="7*"/>
                     </Grid.ColumnDefinitions>
 
-                    <TextBlock Grid.Column="0" Grid.ColumnSpan="3" Margin="0,45,0,0" Grid.RowSpan="2">
+                    <TextBlock Grid.Column="0" Grid.ColumnSpan="3"  Grid.Row="1">
     <Label Content="Interest Rate%" FontSize="12" FontWeight="Bold" HorizontalAlignment="Left"/>
-     <TextBox AcceptsTab="False" x:Name="iva" Margin="24 3 20 2" Padding="1 2 2 2" CaretIndex="0" Width="150"  CacheMode="BitmapCache" InputScope="Number" MinWidth="150" MinHeight="22"/>
+     <TextBox AcceptsTab="False" x:Name="iva" Margin="24 3 20 2" Padding="1 2 2 2" CaretIndex="0" Width="150"  CacheMode="BitmapCache" InputScope="Number" MinWidth="150" MinHeight="22" TextAlignment="Center"/>
 
                     </TextBlock>
-                    <TextBlock Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" Margin="0,45,0,45" Grid.RowSpan="3">
+                    <TextBlock Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="3">
     <Label Content="Annual Value" FontSize="12" FontWeight="Bold" HorizontalAlignment="Left"/>
-    <TextBox x:Name="av" AcceptsTab="False"  Margin="31 2 20 2 " Padding="1 2 2 2" CaretIndex="1" Width="150"  CacheMode="BitmapCache" InputScope="Number"/>
+    <TextBox x:Name="av" AcceptsTab="False"  Margin="31 2 20 2 " Padding="1 2 2 2" CaretIndex="1" Width="150"  CacheMode="BitmapCache" InputScope="Number" TextAlignment="Center"/>
 
                     </TextBlock>
-                    <TextBlock Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="3" Margin="0,0,0,45" Grid.RowSpan="2">
+                    <TextBlock Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="3">
     <Label Content="Number of Periods" FontSize="12" FontWeight="Bold" HorizontalAlignment="Left"/>
-    <TextBox x:Name="nva" Margin="-1 1 1 1" Padding="1 2 2 2" CaretIndex="2" Width="150" AcceptsTab="False" CacheMode="BitmapCache" InputScope="Number"/>
+    <TextBox x:Name="nva" Margin="-1 1 1 1" Padding="1 2 2 2" CaretIndex="2" Width="150" AcceptsTab="False" CacheMode="BitmapCache" InputScope="Number" TextAlignment="Center"/>
 
                     </TextBlock>
                     <Button FontSize="12" Grid.Column="0" Grid.Row="4" Content="Calculate" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"  Background="OrangeRed" Click="Button_Click_a" Height="NaN" Width="NaN" Grid.ColumnSpan="2" Margin="0,0,0,0"/>

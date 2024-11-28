@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Automation;
@@ -22,11 +24,50 @@ namespace Calculator
     public partial class Fwindow : Window
     {
         private double _lastValue =0;
+        public string formula_f { get; set; } = @"P\cdot(1+i)^{n} = F";
         public Fwindow()
         {
             InitializeComponent();
         }
-      
+
+        private void iv_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            var tb = (TextBox)sender;
+            if (String.IsNullOrEmpty(tb.Text))
+            {
+                tb.Text = "0";
+            }
+            tb.Text = Regex.IsMatch(tb.Text, @"^\-?[0-9]*\.?[0-9]*$") ? tb.Text : "0";
+            var reg = new RegularExpressionAttribute(@"\+(i|\-?\d*\.?\d*)");
+            f_formula.Formula = Regex.Replace(f_formula.Formula, reg.Pattern, "+" +  tb.Text, RegexOptions.IgnoreCase);
+            formula_f = f_formula.Formula;
+        }
+
+        private void pv_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            var tb = (TextBox)sender;
+            if (String.IsNullOrEmpty(tb.Text))
+            {
+                tb.Text = "0";
+            }
+            tb.Text = Regex.IsMatch(tb.Text, @"^\-?[0-9]*\.?[0-9]*$") ? tb.Text : "0";
+            var reg = new RegularExpressionAttribute(@"^(P|\-?\d*\.?\d*)");
+            f_formula.Formula = Regex.Replace(f_formula.Formula, reg.Pattern, tb.Text, RegexOptions.IgnoreCase);
+            formula_f = f_formula.Formula;
+        }
+
+        private void nv_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            var tb = (TextBox)sender;
+            if (String.IsNullOrEmpty(tb.Text))
+            {
+                tb.Text = "0";
+            }
+            tb.Text = Regex.IsMatch(tb.Text, @"^[0-9]*$") ? tb.Text : "0";
+            var reg = new RegularExpressionAttribute(@"\^\{(n|\-?\d*\.?\d*)");
+            f_formula.Formula = Regex.Replace(f_formula.Formula, reg.Pattern, @"^{"+ tb.Text, RegexOptions.IgnoreCase);
+            formula_f = f_formula.Formula;
+        }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
@@ -37,6 +78,8 @@ namespace Calculator
 
             _lastValue = calculate_future(p, interest, n);
             fr.Text = _lastValue.ToString("");
+            f_formula.Formula = formula_f.Replace("F", fr.Text);
+            formula_f = f_formula.Formula;
             ((MainWindow)Application.Current.MainWindow).resultLabel.Content = fr.Text;
         }
        
@@ -109,5 +152,7 @@ namespace Calculator
                 }
             }
         }
+
+      
     }
 }

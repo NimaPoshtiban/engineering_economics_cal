@@ -35,6 +35,7 @@
 	</PropertyGroup>
 
 	<ItemGroup>
+		<None Remove="engsplash.jpg" />
 		<None Remove="formulas.dll" />
 		<None Remove="images\ccfuture.JPG" />
 		<None Remove="images\cfuture.JPG" />
@@ -81,6 +82,12 @@
 		<Resource Include="images\present.PNG">
 			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</Resource>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <SplashScreen Include="engsplash.jpg">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </SplashScreen>
 	</ItemGroup>
 
 	<ItemGroup>
