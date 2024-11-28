@@ -371,21 +371,21 @@ namespace Calculator
         }
 
         [DefaultDllImportSearchPaths(DllImportSearchPath.AssemblyDirectory)]
-        [DllImport("C:\\Users\\nima\\source\\repos\\NimaPoshtiban\\Csharp-Projects-CalculatorWPF\\bin\\Debug\\net8.0-windows7.0\\formulas.dll")]
+        [DllImport("formulas.dll")]
         static extern double calculate_summation(int start, int end, double interest,
                              double annual_uniform);
         [DefaultDllImportSearchPaths(DllImportSearchPath.AssemblyDirectory)]
-        [DllImport("C:\\Users\\nima\\source\\repos\\NimaPoshtiban\\Csharp-Projects-CalculatorWPF\\bin\\Debug\\net8.0-windows7.0\\formulas.dll")]
+        [DllImport("formulas.dll")]
         static extern double calculate_summation_with_gradient(double gradient, double annual_uniform, double interest, int n);
 
         [DefaultDllImportSearchPaths(DllImportSearchPath.AssemblyDirectory)]
-        [DllImport("C:\\Users\\nima\\source\\repos\\NimaPoshtiban\\Csharp-Projects-CalculatorWPF\\bin\\Debug\\net8.0-windows7.0\\formulas.dll")]
+        [DllImport("formulas.dll")]
         static extern double calculate_present_via_geometric_gradient(double a1, double i, double g, int n);
         [DefaultDllImportSearchPaths(DllImportSearchPath.AssemblyDirectory)]
-        [DllImport("C:\\Users\\nima\\source\\repos\\NimaPoshtiban\\Csharp-Projects-CalculatorWPF\\bin\\Debug\\net8.0-windows7.0\\formulas.dll")]
+        [DllImport("formulas.dll")]
         static extern double calculate_present_c(double f, double r, double n);
         [DefaultDllImportSearchPaths(DllImportSearchPath.AssemblyDirectory)]
-        [DllImport("C:\\Users\\nima\\source\\repos\\NimaPoshtiban\\Csharp-Projects-CalculatorWPF\\bin\\Debug\\net8.0-windows7.0\\formulas.dll")]
+        [DllImport("formulas.dll")]
         static extern double calculate_present_via_annual_uniform_c(double a, double r, int n);
 
      
